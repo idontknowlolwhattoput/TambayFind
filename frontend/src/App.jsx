@@ -11,6 +11,7 @@ import ApplicantLogin from './pages/applicant/applicantlogin'
 import ApplicantSignupOTP from './pages/applicant/applicantsignupotp'
 import CreatePassword from './pages/applicant/createpassword'
 import EmployerRegistration from './pages/employer/employerregister'
+import EmployerSignin from './pages/employer/employersignin'
 
 function App() {
   return (
@@ -18,7 +19,6 @@ function App() {
        <BrowserRouter>
          <Routes> 
            <Route path="/" element={<Home />}/>
-           <Route path="/employer/register" element={<EmployerRegistration/>} />
            <Route path="/applicant/signup" element={<ApplicantSignup/>} />
            <Route path="/applicant/signin" element={<ApplicantLogin/>} />
            <Route path="/applicant/verify-otp" element={<ApplicantSignupOTP/>} />
@@ -27,6 +27,10 @@ function App() {
            <Route element={<RouteProtection/>}>
              <Route path="/applicant/profile" element={<ApplicantProfile />}/>
            </Route>
+
+           <Route path="/employer/register" element={<EmployerRegistration/>} />
+           <Route path="/employer/signin" element={<EmployerSignin />} />
+
          </Routes>      
        </BrowserRouter>
      </AuthProvider>

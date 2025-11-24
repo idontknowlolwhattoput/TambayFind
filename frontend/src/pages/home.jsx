@@ -2,6 +2,7 @@ import bgsearch from "../assets/svg/banner.svg"
 import logo from "../assets/svg/logo.svg"
 import { useNavigate } from "react-router"
 import Navbar from "../modals/navbar"
+import JobListing from "./applicant/joblisting"
 export default function Home() {
     const navigate = useNavigate()
     return (
@@ -23,6 +24,7 @@ export default function Home() {
           </div>
           <button className="mt-6 w-50 h-9 bg-green-600 rounded-md text-white font-bold">Search Job</button>
         </div>
+        <JobListing />
       </div>
     )
 }

@@ -7,6 +7,7 @@ import applicantroutes from "./routes/applicant/applicantSigninRoutes.js";
 import registerapplicantroutes from "./routes/applicant/registerApplicantRoutes.js"
 import fetchapplicants from "./routes/applicant/fetchApplicantController.js"
 import registeremployerroute from "./routes/employer/registeremployerroute.js"
+import employersigninroute from "./routes/employer/employersigninroute.js"
 
 const app = express();
 const port = 5000;
@@ -39,7 +40,9 @@ app.get("/", (req, res) => {
 app.use("/api", applicantroutes);
 app.use("/applicant", registerapplicantroutes)
 app.use("/applicant", fetchapplicants )
+
 app.use("/employer", registeremployerroute)
+app.use("/employer", employersigninroute)
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

@@ -21,6 +21,7 @@ function App() {
            <Route path="/applicant/signin" element={<ApplicantLogin/>} />
            <Route path="/applicant/verify-otp" element={<ApplicantSignupOTP/>} />
            <Route path="/applicant/create-password" element={<CreatePassword />} />
+           <Route path="/applicant/profile" element={<ApplicantProfile />} />
            <Route element={<RouteProtection/>}>
              <Route path="/applicant/profile" element={<ApplicantProfile />}/>
            </Route>

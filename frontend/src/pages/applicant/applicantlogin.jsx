@@ -2,6 +2,7 @@ import "../../index.css"
 import logo from "../../assets/svg/logo.svg"
 import { useState } from "react"
 import { useNavigate } from "react-router"
+import axios from "axios"
 
 export default function ApplicantLogin() {
     const navigate = useNavigate()
@@ -19,8 +20,18 @@ export default function ApplicantLogin() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
-        console.log("Login attempt:", formData)
+        axios.post("http://localhost:5000/applicant/signin-applicant", {
+            username: formData.email, 
+            password: formData.password
+        })
+        .then(response => {
+            console.log("Success")
+            sessionStorage.setItem("applicant_id", response.data.applicant.applicant_id)
+            navigate("/")
+        })
+        .catch(error => {
+             console.log("Error")
+        })
     }
 
     return (
@@ -51,7 +62,7 @@ export default function ApplicantLogin() {
                                 Email
                             </label>
                             <input
-                                type="email"
+                                type="text"
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}

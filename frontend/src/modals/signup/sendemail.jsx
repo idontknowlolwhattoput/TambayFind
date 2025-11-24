@@ -3,9 +3,10 @@ import showpass from "../../assets/svg/login/showpass.svg"
 import hidepass from "../../assets/svg/login/hidepass.svg"
 
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 export default function SendEmail() {
-    
+    const navigate = useNavigate()
     const [signupPhase, setSignupPhase] = useState({
         emailsending: false,
         otpConfirmation: false,
@@ -28,6 +29,7 @@ export default function SendEmail() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Signup data:", formData);
+        
     };
 
     const handleGoogleSignup = () => {
@@ -48,13 +50,13 @@ export default function SendEmail() {
                     <form onSubmit={handleSubmit} className="space-y-5">
                         {/* Email Field */}
                         <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                                Email
+                            <label htmlFor="otp" className="block text-sm font-medium text-gray-700 mb-2">
+                                One-Time Password (OTP)
                             </label>
                             <input
-                                type="email"
-                                id="email"
-                                name="email"
+                                type="text"
+                                id="otp"
+                                name="otp"
                                 value={formData.email}
                                 onChange={handleChange}
                                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors"

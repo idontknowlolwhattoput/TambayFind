@@ -4,9 +4,12 @@ import hidepass from "../../assets/svg/login/hidepass.svg"
 import axios from "axios"
 
 import { useState } from "react";
+import { useNavigate } from "react-router";
+import Waiting from "../../modals/waiting";
     
 export default function ApplicantSignup() {
-    
+    const [isLoading, setLoading] = useState()
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         email: "",
     });
@@ -20,11 +23,14 @@ export default function ApplicantSignup() {
     };
 
     const handleSendOTP = (email) => {
-        axios.post('http://localhost:5000/test/testing', {
+        setLoading(true)
+        axios.post('http://localhost:5000/api/send-otp', {
             email: email
         })
         .then(function (response) {
-          console.log(response);
+          setLoading(false)
+          sessionStorage.setItem("otp", response.data);
+          navigate("/applicant/verify-otp")
         })
          .catch(function (error) {
           console.log(error);
@@ -101,6 +107,11 @@ export default function ApplicantSignup() {
                     </div>
                 </div>
             </div>
+         {isLoading && (
+           <div className="bg-white w-screen h-screen absolute inset-0">
+             <Waiting />
+           </div>
+             )}
         </div>
     );
 }

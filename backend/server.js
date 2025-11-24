@@ -1,7 +1,12 @@
 import express from "express";
 import helmet from "helmet";
-import applicantroutes from "./routes/applicantSigninRoutes.js";
 import cors from "cors"
+
+// ROUTES
+import applicantroutes from "./routes/applicant/applicantSigninRoutes.js";
+import registerapplicantroutes from "./routes/applicant/registerApplicantRoutes.js"
+import fetchapplicants from "./routes/applicant/fetchApplicantController.js"
+
 const app = express();
 const port = 5000;
 
@@ -29,9 +34,10 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-// Correct router usage
-app.use("/test", applicantroutes);
 
+app.use("/api", applicantroutes);
+app.use("/applicant", registerapplicantroutes)
+app.use("/applicant", fetchapplicants )
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

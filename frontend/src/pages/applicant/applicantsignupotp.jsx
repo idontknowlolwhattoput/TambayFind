@@ -5,8 +5,10 @@ import axios from "axios"
 
 import { useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router";
     
 export default function ApplicantSignupOTP() {
+    const navigate = useNavigate()
     const [displayOTP, setDisplayOTP] = useState()
     const [formData, setFormData] = useState({
         email: "",
@@ -18,20 +20,19 @@ export default function ApplicantSignupOTP() {
             ...prev,
             [name]: value
         }));
-
-        
     };
 
-    const handleSendOTP = (email) => {
-        axios.post('http://localhost:5000/test/testing', {
-            email: email
-        })
-        .then(function (response) {
-          console.log(response);
-        })
-         .catch(function (error) {
-          console.log(error);
-        });
+    const handleSendOTP = (myOTP) => {
+        if(myOTP != sessionStorage.getItem("otp")) {
+            alert("Invalid OTP. Please try again. ")
+        }else{
+            navigate("/applicant/create-password")
+        }
+    }
+
+
+    const test = () => {
+        alert("")
     }
 
     const handleSubmit = (e) => {
@@ -59,10 +60,10 @@ export default function ApplicantSignupOTP() {
                         {/* Email Field */}
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                                Email
+                              One-Time Password 
                             </label>
                             <input                  
-                                type="email"
+                                type="text"
                                 id="email"
                                 name="email"
                                 value={formData.email}
